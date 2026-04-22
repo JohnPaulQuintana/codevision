@@ -65,14 +65,20 @@ function getTypeColor(type: string) {
   }
 }
 
-
 export default function Lesson1() {
   const [pokemons, setPokemons] = useState<any[]>([]);
   const [selected, setSelected] = useState<any>(null);
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [language, setLanguage] = useState<
-    "javascript" | "typescript" | "python" | "java"
+    | "javascript"
+    | "typescript"
+    | "python"
+    | "java"
+    | "csharp"
+    | "cpp"
+    | "go"
+    | "php"
   >("javascript");
   const [isMobile, setIsMobile] = useState(false);
 
@@ -167,6 +173,94 @@ class Pokemon {
 // Object creation (instance)
 Pokemon ${name} = new Pokemon("${name}", "${type}");
 `;
+
+      case "csharp":
+        return `// Class definition
+class Pokemon {
+    public string Name;
+    public string Type;
+
+    public Pokemon(string name, string type) {
+        Name = name;
+        Type = type;
+    }
+
+    public void Attack() {
+        Console.WriteLine($"{name} uses {type} attack!");
+    }
+}
+
+// Object creation
+Pokemon ${name} = new Pokemon("${name}", "${type}");
+`;
+
+      case "cpp":
+        return `#include <iostream>
+using namespace std;
+
+// Class definition
+class Pokemon {
+public:
+    string name;
+    string type;
+
+    Pokemon(string n, string t) {
+        name = n;
+        type = t;
+    }
+
+    void attack() {
+        cout << name << " uses " << type << " attack!" << endl;
+    }
+};
+
+// Object creation
+int main() {
+    Pokemon ${name}("${name}", "${type}");
+}
+`;
+
+      case "go":
+        return `package main
+import "fmt"
+
+// Struct instead of class
+type Pokemon struct {
+    Name string
+    Type string
+}
+
+// Method
+func (p Pokemon) Attack() {
+    fmt.Println(p.Name + " uses " + p.Type + " attack!")
+}
+
+func main() {
+    ${name} := Pokemon{Name: "${name}", Type: "${type}"}
+    ${name}.Attack()
+}
+`;
+
+      case "php":
+        return `<?php
+// Class definition
+class Pokemon {
+    public $name;
+    public $type;
+
+    function __construct($name, $type) {
+        $this->name = $name;
+        $this->type = $type;
+    }
+
+    function attack() {
+        echo $this->name . " uses " . $this->type . " attack!";
+    }
+}
+
+// Object creation
+$${name} = new Pokemon("${name}", "${type}");
+?>`;
 
       default:
         return `// Class definition
@@ -349,6 +443,10 @@ const ${name} = new Pokemon("${name}", "${type}");
                     <option value="typescript">TypeScript</option>
                     <option value="python">Python</option>
                     <option value="java">Java</option>
+                    <option value="csharp">C#</option>
+                    <option value="cpp">C++</option>
+                    <option value="go">Go</option>
+                    <option value="php">PHP</option>
                   </select>
 
                   {/* RIGHT: COPY BUTTON */}
