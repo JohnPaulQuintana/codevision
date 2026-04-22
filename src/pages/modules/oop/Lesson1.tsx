@@ -492,25 +492,29 @@ const ${name} = new Pokemon("${name}", "${type}");
               </div>
 
               {/* CODE */}
-              <SyntaxHighlighter
-                language={language === "javascript" ? "js" : language}
-                style={oneDark}
-                showLineNumbers
-                wrapLongLines
-                customStyle={{
-                  margin: 0,
-                  padding: "16px",
-                  background: "#0F172A",
-                  fontSize: "13px",
-                }}
-                codeTagProps={{
-                  style: {
-                    fontFamily: "monospace",
-                  },
-                }}
-              >
-                {generatedCode}
-              </SyntaxHighlighter>
+              <div className="w-full overflow-x-auto scrollbar-modern">
+                <SyntaxHighlighter
+                  language={language === "javascript" ? "js" : language}
+                  style={oneDark}
+                  showLineNumbers={true}
+                  wrapLongLines={false} // ❌ IMPORTANT: turn this OFF
+                  customStyle={{
+                    margin: 0,
+                    padding: isMobile ? "12px" : "16px",
+                    background: "#0F172A",
+                    fontSize: isMobile ? "11px" : "13px",
+                    overflowX: "auto",
+                  }}
+                  codeTagProps={{
+                    style: {
+                      fontFamily: "monospace",
+                      whiteSpace: "pre", // ✅ preserve formatting
+                    },
+                  }}
+                >
+                  {generatedCode}
+                </SyntaxHighlighter>
+              </div>
             </div>
           </div>
 
