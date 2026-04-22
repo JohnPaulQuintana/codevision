@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌙 Custom Scrollbar (Dark Modern UI) */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE & Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  .scrollbar-modern::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-modern::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-modern::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #cef63b, #e6e4e9);
+    border-radius: 999px;
+  }
+
+  .scrollbar-modern::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #d0dd1d, #9e9aa1);
+  }
+}
