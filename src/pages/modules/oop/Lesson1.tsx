@@ -174,11 +174,11 @@ class Pokemon {
 Pokemon ${name} = new Pokemon("${name}", "${type}");
 `;
 
-      case "csharp":
-        return `// Class definition
+  case "csharp":
+  return `// Class definition
 class Pokemon {
-    public string Name;
-    public string Type;
+    public string Name { get; set; }
+    public string Type { get; set; }
 
     public Pokemon(string name, string type) {
         Name = name;
@@ -186,12 +186,12 @@ class Pokemon {
     }
 
     public void Attack() {
-        Console.WriteLine($"{name} uses {type} attack!");
+        Console.WriteLine($"{Name} uses {Type} attack!");
     }
 }
 
 // Object creation
-Pokemon ${name} = new Pokemon("${name}", "${type}");
+var ${name} = new Pokemon("${name}", "${type}");
 `;
 
       case "cpp":
