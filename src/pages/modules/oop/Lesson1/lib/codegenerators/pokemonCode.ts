@@ -9,130 +9,144 @@ type Language =
   | "go"
   | "php";
 
-// Shape of the Pokémon object we use for generation
+// Shape of the Pokémon object used as input
 type Pokemon = {
-  name: string; // Pokémon name (e.g., pikachu)
-  type: string; // Pokémon type (e.g., electric)
+  name: string; // Pokémon name (example: pikachu)
+  type: string; // Pokémon type (example: electric)
 };
 
-// Main function: generates OOP code depending on selected language
+// Main function that generates code
 export function generatePokemonCode(
-  language: Language, // selected programming language
-  pokemon: Pokemon, // selected Pokémon data
+  language: Language, // selected language
+  pokemon: Pokemon,   // Pokémon data
 ) {
-  // Extract values from object for easier use in templates
+  // Extract name and type from object
   const { name, type } = pokemon;
 
-  // Choose which code template to generate based on language
+  // Select code template based on language
   switch (language) {
+
     // =========================
-    // TYPE SCRIPT VERSION
+    // TYPESCRIPT VERSION
     // =========================
     case "typescript":
-      return `// Class definition: blueprint for creating objects
+      return `// Define a class (blueprint for objects)
 class Pokemon {
-  // Properties (data stored in object)
-  name: string;
-  type: string;
+  name: string; // property: stores name
+  type: string; // property: stores type
 
-  // Constructor runs when object is created
+  // Constructor: runs when object is created
   constructor(name: string, type: string) {
-    this.name = name; // assign parameter to object property
-    this.type = type; // assign parameter to object property
+    this.name = name; // assign parameter to property
+    this.type = type; // assign parameter to property
   }
 
-  // Method = behavior of the object
-  attack(): void {
-    console.log(\`\${this.name} uses \${this.type} attack!\`);
+  // Method: displays Pokémon info
+  display(): void {
+    console.log(\`Name: \${this.name}\`); // print name
+    console.log(\`Type: \${this.type}\`); // print type
   }
 }
 
-// Creating an object (instance of class)
+// Create an object (instance of class)
 const ${name}: Pokemon = new Pokemon("${name}", "${type}");
+
+// Call method to show data
+${name}.display();
 `;
 
     // =========================
     // PYTHON VERSION
     // =========================
     case "python":
-      return `# Class definition: blueprint for objects
+      return `# Define a class
 class Pokemon:
 
     # Constructor: runs when object is created
     def __init__(self, name, type):
-        self.name = name  # store name in object
-        self.type = type  # store type in object
+        self.name = name  # store name
+        self.type = type  # store type
 
-    # Method: defines behavior
-    def attack(self):
-        print(f"{name} uses {type} attack!")
+    # Method: display info
+    def display(self):
+        print(f"Name: {self.name}")  # print name
+        print(f"Type: {self.type}")  # print type
 
-# Creating an instance of the class
+# Create object
 ${name} = Pokemon("${name}", "${type}")
+
+# Call method
+${name}.display()
 `;
 
     // =========================
     // JAVA VERSION
     // =========================
     case "java":
-      return `// Class definition: blueprint for objects
+      return `// Define class
 class Pokemon {
 
-    // Properties (fields)
-    String name;
-    String type;
+    String name; // property
+    String type; // property
 
-    // Constructor: initializes object values
+    // Constructor
     Pokemon(String name, String type) {
-        this.name = name;
-        this.type = type;
+        this.name = name; // assign value
+        this.type = type; // assign value
     }
 
-    // Method: behavior of object
-    void attack() {
-        System.out.println(name + " uses " + type + " attack!");
+    // Method: display info
+    void display() {
+        System.out.println("Name: " + name); // print name
+        System.out.println("Type: " + type); // print type
     }
 }
 
-// Creating object instance
+// Create object
 Pokemon ${name} = new Pokemon("${name}", "${type}");
+
+// Call method
+${name}.display();
 `;
 
     // =========================
     // C# VERSION
     // =========================
     case "csharp":
-      return `// Class definition
+      return `// Define class
 class Pokemon {
 
-    // Auto-properties (data storage)
-    public string Name { get; set; }
-    public string Type { get; set; }
+    public string Name { get; set; } // property
+    public string Type { get; set; } // property
 
     // Constructor
     public Pokemon(string name, string type) {
-        Name = name;
-        Type = type;
+        Name = name; // assign value
+        Type = type; // assign value
     }
 
-    // Method: behavior
-    public void Attack() {
-        Console.WriteLine($"{Name} uses {Type} attack!");
+    // Method: display info
+    public void Display() {
+        Console.WriteLine($"Name: {Name}"); // print name
+        Console.WriteLine($"Type: {Type}"); // print type
     }
 }
 
-// Creating object instance
+// Create object
 var ${name} = new Pokemon("${name}", "${type}");
+
+// Call method
+${name}.Display();
 `;
 
     // =========================
     // C++ VERSION
     // =========================
     case "cpp":
-      return `#include <iostream>
-using namespace std;
+      return `#include <iostream> // input/output library
+using namespace std; // allows use of cout
 
-// Class definition
+// Define class
 class Pokemon {
 public:
     string name; // property
@@ -140,19 +154,23 @@ public:
 
     // Constructor
     Pokemon(string n, string t) {
-        name = n;
-        type = t;
+        name = n; // assign value
+        type = t; // assign value
     }
 
-    // Method
-    void attack() {
-        cout << name << " uses " << type << " attack!" << endl;
+    // Method: display info
+    void display() {
+        cout << "Name: " << name << endl; // print name
+        cout << "Type: " << type << endl; // print type
     }
 };
 
 int main() {
-    // Creating object instance
+    // Create object
     Pokemon ${name}("${name}", "${type}");
+
+    // Call method
+    ${name}.display();
 }
 `;
 
@@ -161,25 +179,27 @@ int main() {
     // =========================
     case "go":
       return `package main
-import "fmt"
 
-// Struct = lightweight class
+import "fmt" // import formatting library
+
+// Define struct (similar to class)
 type Pokemon struct {
-    Name string
-    Type string
+    Name string // property
+    Type string // property
 }
 
 // Method attached to struct
-func (p Pokemon) Attack() {
-    fmt.Println(p.Name + " uses " + p.Type + " attack!")
+func (p Pokemon) Display() {
+    fmt.Println("Name:", p.Name) // print name
+    fmt.Println("Type:", p.Type) // print type
 }
 
 func main() {
-    // Creating struct instance
+    // Create object
     ${name} := Pokemon{Name: "${name}", Type: "${type}"}
 
-    // Calling method
-    ${name}.Attack()
+    // Call method
+    ${name}.Display()
 }
 `;
 
@@ -188,50 +208,58 @@ func main() {
     // =========================
     case "php":
       return `<?php
-// Class definition
+// Define class
 class Pokemon {
 
     public $name; // property
-    public $type;  // property
+    public $type; // property
 
     // Constructor
     function __construct($name, $type) {
-        $this->name = $name;
-        $this->type = $type;
+        $this->name = $name; // assign value
+        $this->type = $type; // assign value
     }
 
-    // Method
-    function attack() {
-        echo $this->name . " uses " . $this->type . " attack!";
+    // Method: display info
+    function display() {
+        echo "Name: " . $this->name . "\\n"; // print name
+        echo "Type: " . $this->type . "\\n"; // print type
     }
 }
 
-// Creating object instance
+// Create object
 $${name} = new Pokemon("${name}", "${type}");
+
+// Call method
+$${name}->display();
 ?>
 `;
 
     // =========================
-    // JAVASCRIPT DEFAULT VERSION
+    // JAVASCRIPT DEFAULT
     // =========================
     default:
-      return `// Class definition
+      return `// Define class
 class Pokemon {
 
-  // Constructor runs when object is created
+  // Constructor
   constructor(name, type) {
-    this.name = "${name}"; // store name
-    this.type = "${type}"; // store type
+    this.name = name; // store name
+    this.type = type; // store type
   }
 
-  // Method: behavior of object
-  attack() {
-    console.log("${name} uses ${type} attack!");
+  // Method: display info
+  display() {
+    console.log("Name:", this.name); // print name
+    console.log("Type:", this.type); // print type
   }
 }
 
-// Creating object instance
+// Create object
 const ${name} = new Pokemon("${name}", "${type}");
+
+// Call method
+${name}.display();
 `;
   }
 }

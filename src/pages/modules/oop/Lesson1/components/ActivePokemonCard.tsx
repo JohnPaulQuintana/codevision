@@ -26,8 +26,8 @@ export default function ActivePokemonCard({ pokemon, theme }: Props) {
         <img src={pokemon.sprite} className="w-full" />
 
         <div>
-          <p className="text-2xl font-bold capitalize">
-            {pokemon.name}
+          <p className="text-gray-300 text-2xl font-bold capitalize">
+            Name: <span className={theme}>{pokemon.name}</span>
           </p>
           <p className="text-gray-300">
             Type: <span className={theme}>{pokemon.type}</span>

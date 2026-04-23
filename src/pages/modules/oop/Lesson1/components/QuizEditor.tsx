@@ -15,46 +15,42 @@ type Props = {
 
 export default function QuizEditor({
   code,
-  setCode,
+  // setCode,
   language,
   setLanguage,
   theme,
   isMobile,
-  onRun,
+  // onRun,
 }: Props) {
   return (
-    <div className="h-full w-full flex flex-col rounded-xl overflow-hidden border border-gray-800">
-
+    <div className="h-full w-full flex flex-col overflow-hidden border border-gray-800">
       {/* HEADER */}
       <div className="flex justify-between items-center px-4 py-2 bg-[#0B0F1A] border-b border-gray-800">
-
         <p className={`text-sm font-bold uppercase ${theme}`}>
           Pokémon Code Editor
         </p>
 
         <div className="flex items-center gap-2">
-
           {/* LANGUAGE SELECT */}
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value as Language)}
             className="bg-[#111827] text-xs text-white px-2 py-1 rounded"
           >
-            <option value="javascript">JS</option>
-            <option value="typescript">TS</option>
-            <option value="python">Py</option>
-            <option value="java">Java</option>
-            <option value="csharp">C#</option>
+            <option value="javascript">JAVASCRIPT</option>
+            {/* <option value="typescript">TS - Not Supported</option>
+            <option value="python">Py - Not Supported</option>
+            <option value="java">Java - Not Supported</option>
+            <option value="csharp">C# - Not Supported</option> */}
           </select>
 
           {/* RUN BUTTON 🔥 */}
-          <button
+          {/* <button
             onClick={onRun}
             className={`${theme} text-xs px-3 py-1 rounded font-semibold transition`}
           >
             Run Code
-          </button>
-
+          </button> */}
         </div>
       </div>
 
@@ -62,10 +58,14 @@ export default function QuizEditor({
       <div className="flex-1">
         <Editor
           height="100%"
-          language={language === "javascript" ? "javascript" : language}
+          language={language}
           theme="vs-dark"
           value={code}
-          onChange={(value) => setCode(value || "")}
+          onMount={(editor) => {
+            editor.updateOptions({
+              readOnly: true, // 🔒 LOCK EDITOR
+            });
+          }}
           options={{
             fontSize: isMobile ? 12 : 15,
             minimap: { enabled: false },
@@ -73,6 +73,8 @@ export default function QuizEditor({
             automaticLayout: true,
             scrollBeyondLastLine: false,
             tabSize: 2,
+            formatOnType: false,
+            formatOnPaste: false,
           }}
         />
       </div>

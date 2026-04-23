@@ -4,6 +4,10 @@
 
 /* 🌙 Custom Scrollbar (Dark Modern UI) */
 @layer utilities {
+  .editable-line {
+    background: rgba(34, 197, 94, 0.15);
+  }
+
   .scrollbar-hide {
     -ms-overflow-style: none; /* IE & Edge */
     scrollbar-width: none; /* Firefox */
