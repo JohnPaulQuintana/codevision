@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { logout, getToken } from "../auth/auth";
 import { useNavigate } from "react-router-dom";
+import { Trophy } from "lucide-react";
 
 type Props = {
   theme?: {
@@ -41,9 +42,24 @@ export default function CodeVisionHeader({ theme }: Props) {
       {/* RIGHT - TAG + LOGOUT */}
       <div className="flex items-center gap-3">
         <button
-          // onClick={() => navigate("/learn")}
-          className={`text-[10px] ${theme?.text} border ${theme?.border} px-2 py-2 rounded-md`}
+          // onClick={() => navigate("/ranking")}
+          className={`
+    flex items-center gap-2
+    text-xs font-bold tracking-wide
+    ${theme?.text}
+    border ${theme?.border}
+    px-3 py-2 rounded-lg
+
+    bg-gradient-to-r from-yellow-500/10 to-orange-500/10
+    hover:from-yellow-500/20 hover:to-orange-500/20
+
+    shadow-yellow-500/10 hover:shadow-yellow-500/30
+    shadow-lg
+
+    hover:scale-105 transition
+  `}
         >
+          <Trophy className="w-4 h-4 text-yellow-400" />
           Ranking
         </button>
         <button
