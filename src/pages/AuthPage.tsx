@@ -135,7 +135,7 @@ export default function AuthPage() {
         {/* 🌫 BACKGROUND */}
         <AnimatePresence mode="wait">
           {bgPokemon && (
-            <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-between px-16 pointer-events-none w-full z-20">
+            <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-between px-2 md:px-16 pointer-events-none w-full z-20">
               {/* NAME (LEFT) */}
               <motion.h1
                 key={bgPokemon.name + "-text"}
@@ -143,7 +143,7 @@ export default function AuthPage() {
                 animate={{ opacity: 0.08, x: 0 }}
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 1.5 }}
-                className={`text-[120px] font-black uppercase ${theme.text} tracking-widest select-none`}
+                className={`text-[90px] md:text-[120px] font-black uppercase ${theme.text} tracking-widest select-none`}
               >
                 {bgPokemon.name}
               </motion.h1>
