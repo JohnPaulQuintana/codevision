@@ -1,5 +1,11 @@
 import { api } from "./api";
 
+export const getName = () => localStorage.getItem("name");
+
+export const setName = (name: string) => {
+  localStorage.setItem("name", name);
+};
+
 export const getToken = () => localStorage.getItem("token");
 
 export const setToken = (token: string) => {

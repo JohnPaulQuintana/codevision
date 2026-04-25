@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { getToken, logout } from "./auth";
+import { getToken, setName, logout } from "./auth";
 import { api } from "../auth/api";
 
 export default function ProtectedRoute({ children }: any) {
@@ -21,8 +21,10 @@ export default function ProtectedRoute({ children }: any) {
 
     // use global API wrapper instead of fetch
     api("/me")
-      .then(() => {
+      .then((res) => {
         setValid(true);
+        console.log(res.data);
+        setName(res?.data?.name)
       })
       .catch(() => {
         logout(); // auto clear invalid session
