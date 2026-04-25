@@ -564,7 +564,7 @@ pokemon.display();
 
         {/* RIGHT - CODE EDITOR */}
         <div className="w-full md:w-[55%] bg-[#0F172A] border-l border-gray-800 flex flex-col">
-          <div className="flex-1 px-3">
+          <div className="flex-1 md:px-3">
             <QuizEditor
               code={code}
               setCode={setCode}
