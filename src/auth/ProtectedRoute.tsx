@@ -16,6 +16,9 @@ export default function ProtectedRoute({ children }: any) {
       return;
     }
 
+    const MIN_LOADING_TIME = 3000; // adjust (500–1000ms feels good)
+    const start = Date.now();
+
     // use global API wrapper instead of fetch
     api("/me")
       .then(() => {
@@ -26,30 +29,32 @@ export default function ProtectedRoute({ children }: any) {
         setValid(false);
       })
       .finally(() => {
-        setLoading(false);
+        const elapsed = Date.now() - start;
+        const remaining = MIN_LOADING_TIME - elapsed;
+
+        if (remaining > 0) {
+          setTimeout(() => setLoading(false), remaining);
+        } else {
+          setLoading(false);
+        }
       });
   }, []);
 
-if (loading) {
-  return (
-    <div className="h-screen flex flex-col items-center justify-center bg-[#0B0F1A] text-white">
+  if (loading) {
+    return (
+      <div className="h-screen flex flex-col items-center justify-center bg-[#0B0F1A] text-white">
+        <img
+          src="/pokeball.svg"
+          alt="loading"
+          className="w-32 h-32 animate-bounce"
+        />
 
-      <img
-        src="/pokeball.svg"
-        alt="loading"
-        className="w-32 h-32 animate-bounce"
-      />
+        <p className="mt-6 text-lg font-bold">Loading OOP Data...</p>
 
-      <p className="mt-6 text-lg font-bold">
-        Loading OOP Data...
-      </p>
-
-      <p className="text-sm text-gray-400 mt-2">
-        Connecting to Pokédex...
-      </p>
-    </div>
-  );
-}
+        <p className="text-sm text-gray-400 mt-2">Connecting to Pokédex...</p>
+      </div>
+    );
+  }
 
   if (!valid) return <Navigate to="/login" replace />;
 
