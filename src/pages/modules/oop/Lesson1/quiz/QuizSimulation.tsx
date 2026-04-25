@@ -274,7 +274,7 @@ pokemon.display();
           loadGame();
           userStage();
           setIsTransitioning(false);
-        }, 4500);
+        }, 6000);
 
         return;
       }
