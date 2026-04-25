@@ -106,7 +106,7 @@ pikachu.display();
       if (response.ok) {
         setModule(response.data);
         setXp(response?.data.total_xp || 0);
-        setShowIntro(response?.data.progress == 100 ? false : true)
+        setShowIntro(response?.data.progress == 100 ? false : true);
         setShowCompleteModal(response?.data.progress == 100 ? true : false);
         console.log(response.data);
       }
@@ -484,10 +484,10 @@ pokemon.display();
           </div>
 
           {/* POKEMON DISPLAY */}
-          <div className="relative w-full h-[420px] flex items-center justify-center bg-[#0B1220] rounded-2xl border border-gray-800 overflow-hidden">
+          <div className="relative w-full h-[300px] flex items-center justify-center bg-[#0B1220] rounded-2xl border border-gray-800 overflow-hidden">
             <img
               src={pokemon.sprite}
-              className={`w-80 h-80 transition-all duration-700 ${
+              className={`w-60 h-60 transition-all duration-700 ${
                 result === "success"
                   ? "blur-0 scale-100"
                   : "blur-md scale-125 opacity-80"
@@ -523,42 +523,42 @@ pokemon.display();
           </div>
 
           {/* INPUTS */}
-          <div className="flex flex-col md:flex-row items-center gap-3 p-4">
-            <h1 className={`text-xl font-black ${theme}`}>Pokemon(</h1>
+          <div className="flex flex-col items-start gap-3 p-4">
+            <h1 className={`text-xl font-black ${theme}`}>Object Pokemon</h1>
 
-            <input
-              className={`p-2 rounded bg-gray-800 border ${
-                nameStatus === "correct"
-                  ? "border-green-500"
-                  : nameStatus === "wrong"
-                    ? "border-red-500"
-                    : "border-gray-700"
-              }`}
-              placeholder="Name"
-              value={nameInput}
-              onChange={(e) => {
-                if (isTransitioning) return;
-                setNameInput(e.target.value);
-              }}
-            />
+            <div className="flex items-center gap-4 w-full">
+              <input
+                className={`w-full p-2 rounded bg-gray-800 border ${
+                  nameStatus === "correct"
+                    ? "border-green-500"
+                    : nameStatus === "wrong"
+                      ? "border-red-500"
+                      : "border-gray-700"
+                }`}
+                placeholder="Name"
+                value={nameInput}
+                onChange={(e) => {
+                  if (isTransitioning) return;
+                  setNameInput(e.target.value);
+                }}
+              />
 
-            <input
-              className={`p-2 rounded bg-gray-800 border ${
-                typeStatus === "correct"
-                  ? "border-green-500"
-                  : typeStatus === "wrong"
-                    ? "border-red-500"
-                    : "border-gray-700"
-              }`}
-              placeholder="Type"
-              value={typeInput}
-              onChange={(e) => {
-                if (isTransitioning) return;
-                setTypeInput(e.target.value);
-              }}
-            />
-
-            <h1 className={`text-xl font-black ${theme}`}>);</h1>
+              <input
+                className={`w-full p-2 rounded bg-gray-800 border ${
+                  typeStatus === "correct"
+                    ? "border-green-500"
+                    : typeStatus === "wrong"
+                      ? "border-red-500"
+                      : "border-gray-700"
+                }`}
+                placeholder="Type"
+                value={typeInput}
+                onChange={(e) => {
+                  if (isTransitioning) return;
+                  setTypeInput(e.target.value);
+                }}
+              />
+            </div>
           </div>
         </div>
 

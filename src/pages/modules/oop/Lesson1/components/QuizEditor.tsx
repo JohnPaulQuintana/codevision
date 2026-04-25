@@ -1,5 +1,7 @@
-import Editor from "@monaco-editor/react";
+// import Editor from "@monaco-editor/react";
 import { type Language } from "../../../../../types/language";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 type Props = {
   code: string;
@@ -56,7 +58,7 @@ export default function QuizEditor({
 
       {/* EDITOR */}
       <div className="flex-1">
-        <Editor
+        {/* <Editor
           height="100%"
           language={language}
           theme="vs-dark"
@@ -76,7 +78,28 @@ export default function QuizEditor({
             formatOnType: false,
             formatOnPaste: false,
           }}
-        />
+        /> */}
+        <SyntaxHighlighter
+            language={language === "javascript" ? "js" : language}
+            style={oneDark}
+            showLineNumbers
+            wrapLongLines={false}
+            customStyle={{
+              margin: 0,
+              padding: isMobile ? "12px" : "16px",
+              background: "#0F172A",
+              fontSize: isMobile ? "11px" : "13px",
+              overflowX: "auto",
+            }}
+            codeTagProps={{
+              style: {
+                fontFamily: "monospace",
+                whiteSpace: "pre",
+              },
+            }}
+          >
+            {code}
+          </SyntaxHighlighter>
       </div>
     </div>
   );

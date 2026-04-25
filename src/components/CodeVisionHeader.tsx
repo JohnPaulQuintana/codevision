@@ -29,7 +29,7 @@ export default function CodeVisionHeader({ theme }: Props) {
   };
 
   return (
-    <div className="sticky top-0 z-10 flex flex-col md:flex-row items-center justify-between border-b border-gray-800 p-4 bg-[#0B0F1A]">
+    <div className="sticky top-0 z-40 flex flex-col md:flex-row items-center justify-between border-b border-gray-800 p-4 bg-[#0B0F1A]">
       {/* LEFT - LOGO */}
       <div className="flex items-center gap-2">
         <h1
