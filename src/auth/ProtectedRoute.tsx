@@ -30,7 +30,26 @@ export default function ProtectedRoute({ children }: any) {
       });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+if (loading) {
+  return (
+    <div className="h-screen flex flex-col items-center justify-center bg-[#0B0F1A] text-white">
+
+      <img
+        src="/pokeball.svg"
+        alt="loading"
+        className="w-32 h-32 animate-bounce"
+      />
+
+      <p className="mt-6 text-lg font-bold">
+        Loading OOP Data...
+      </p>
+
+      <p className="text-sm text-gray-400 mt-2">
+        Connecting to Pokédex...
+      </p>
+    </div>
+  );
+}
 
   if (!valid) return <Navigate to="/login" replace />;
 

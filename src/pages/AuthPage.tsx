@@ -5,6 +5,7 @@ import { User, Lock, LogIn } from "lucide-react";
 import { getPokemon } from "../lib/pokeapi";
 import { motion, AnimatePresence } from "framer-motion";
 import CodeVisionHeader from "../components/CodeVisionHeader";
+import CodeVisionFooter from "../components/Footer";
 
 const POKEMON_LIST = [
   "pikachu",
@@ -105,7 +106,7 @@ export default function AuthPage() {
 
       if (response.ok && response.data?.token) {
         setToken(response.data.token);
-        window.location.href = "/oop/lesson-1";
+        window.location.href = "/learn";
       } else {
         alert("Login failed");
       }
@@ -117,7 +118,7 @@ export default function AuthPage() {
   };
 
   const loginWithGoogle = () => {
-    window.location.href = "http://127.0.0.1:8000/api/auth/google";
+    window.location.href = "https://codevision.exousia.online/public/api/auth/google";
   };
 
   // const loginWithGithub = () => {
@@ -125,13 +126,15 @@ export default function AuthPage() {
   // };
 
   return (
-    <div className="h-screen overflow-y-auto scrollbar-modern">
+    <div className="h-screen overflow-y-auto scrollbar-modern bg-[#0B0F1A]">
       <CodeVisionHeader theme={theme} />
       <div className="min-h-screen flex items-center justify-center bg-[#0B0F1A] text-white relative overflow-hidden">
+        
         {/* BACKGROUND ORB */}
         <div
           className={`absolute w-[600px] h-[600px] ${theme.background} blur-3xl rounded-full animate-pulse z-10`}
         />
+        
         {/* 🌫 BACKGROUND */}
         <AnimatePresence mode="wait">
           {bgPokemon && (
@@ -239,6 +242,8 @@ export default function AuthPage() {
           </div>
         </div>
       </div>
+
+      <CodeVisionFooter />
     </div>
   );
 }

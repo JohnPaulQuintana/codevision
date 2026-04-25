@@ -4,6 +4,7 @@ import { Box, Zap, Flame, Droplet, Leaf } from "lucide-react";
 import { getPokemon } from "../lib/pokeapi";
 import { useNavigate } from "react-router-dom";
 import CodeVisionHeader from "../components/CodeVisionHeader";
+import CodeVisionFooter from "../components/Footer";
 
 const POKEMON_LIST = [
   "pikachu",
@@ -13,7 +14,7 @@ const POKEMON_LIST = [
   "eevee",
 ];
 
-// 🎨 THEME SYSTEM
+// THEME SYSTEM
 function getTheme(type?: string) {
   switch (type) {
     case "electric":
@@ -68,7 +69,7 @@ function getTheme(type?: string) {
   }
 }
 
-// 🧬 TYPE ICON
+// TYPE ICON
 function TypeIcon({ type }: { type?: string }) {
   switch (type) {
     case "fire":
@@ -120,18 +121,18 @@ export default function HomePage() {
                 exit={{ opacity: 0, x: -120 }}
                 transition={{ duration: 1.5 }}
                 className={`
-          absolute z-10 left-0 top-0 h-full
-          flex items-start pl-4 md:pl-10
+                  absolute z-10 left-0 top-0 h-full
+                  flex items-start pl-4 md:pl-10
 
-          text-[60px] md:text-[160px]
-          font-black uppercase tracking-[0.4em]
-          select-none
+                  text-[60px] md:text-[160px]
+                  font-black uppercase tracking-[0.4em]
+                  select-none
 
-          ${theme.text}
+                  ${theme.text}
 
-          [writing-mode: vertical-rl]
-          [text-orientation: upright]
-        `}
+                  [writing-mode: vertical-rl]
+                  [text-orientation: upright]
+                `}
               >
                 {bgPokemon.name}
               </motion.h1>
@@ -343,6 +344,7 @@ export default function HomePage() {
           </motion.div>
         </div>
       </div>
+      <CodeVisionFooter />
     </div>
   );
 }

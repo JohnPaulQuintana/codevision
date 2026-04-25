@@ -8,7 +8,18 @@ import AuthSuccess from "./pages/AuthSuccess";
 
 import ProtectedRoute from "./auth/ProtectedRoute";
 import PublicRoute from "./auth/PublicRoute";
+import RankingPage from "./pages/RankingPage";
 
+const isProduction = true; // manually control
+
+if (isProduction) {
+  const noop = () => {};
+
+  console.log = noop;
+  console.info = noop;
+  console.debug = noop;
+  console.warn = noop;
+}
 export default function App() {
   return (
     <BrowserRouter>
@@ -29,12 +40,12 @@ export default function App() {
         {/* HOME (optional public) */}
         <Route path="/" element={<HomePreview />} />
 
-        {/* PROTECTED AREA */}
+        
         <Route 
-          path="/learn" 
+          path="/ranking" 
           element={
             <PublicRoute>
-              <LearningHub />
+              <RankingPage />
             </PublicRoute>
           } 
         />
@@ -44,6 +55,16 @@ export default function App() {
           element={
             <ProtectedRoute>
               <OOPLesson1 />
+            </ProtectedRoute>
+          } 
+        />
+
+        
+        <Route 
+          path="/learn" 
+          element={
+            <ProtectedRoute>
+              <LearningHub />
             </ProtectedRoute>
           } 
         />

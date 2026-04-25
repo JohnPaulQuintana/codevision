@@ -1,6 +1,9 @@
 import { getToken } from "./auth";
 
-const BASE_URL = "http://127.0.0.1:8000/api";
+// Development
+// const BASE_URL = "http://127.0.0.1:8000/api";
+// Production
+const BASE_URL = "https://codevision.exousia.online/public/api";
 
 export const api = async (endpoint: string, options: RequestInit = {}) => {
   const token = getToken();
@@ -15,6 +18,9 @@ export const api = async (endpoint: string, options: RequestInit = {}) => {
   });
 
   const data = await res.json().catch(() => null);
+
+  console.log(data)
+  // if(data.message === "Unauthenticated") return logout()
 
   return {
     status: res.status,

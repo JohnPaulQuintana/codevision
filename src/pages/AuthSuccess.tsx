@@ -11,7 +11,7 @@ export default function AuthSuccess() {
     if (token) {
       localStorage.setItem("token", token);
       console.log("Authenticated....");
-      navigate("/oop/lesson-1");
+      navigate("/learn");
     } else {
       console.log("Not authenticated....");
       navigate("/login");

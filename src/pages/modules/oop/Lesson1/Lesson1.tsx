@@ -14,8 +14,9 @@ import ExpandToggleButton from "./components/ExpandToggleButton";
 import ActivePokemonCard from "./components/ActivePokemonCard";
 import CodeBlock from "./components/CodeBlock";
 import { type Language } from "../../../../types/language";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import CodeVisionFooter from "../../../../components/Footer";
 
 export default function Lesson1() {
   const [pokemons, setPokemons] = useState<any[]>([]);
@@ -74,7 +75,7 @@ export default function Lesson1() {
   }, [expanded, pokemons, isMobile]);
 
   return (
-    <div>
+    <div className="bg-[#0B0F1A]">
       <CodeVisionHeader
         theme={{
           text: theme.split(" ")[1], // text color class
@@ -86,16 +87,6 @@ export default function Lesson1() {
         <div className="relative w-full md:w-80 bg-[#0F172A] border-r border-gray-800 px-4 h-fit md:h-screen flex flex-col">
           {/* HEADER */}
           <div className="p-5 border-b border-gray-800 sticky top-0 bg-[#0F172A]">
-            <motion.button
-              onClick={() => window.history.back()}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`flex items-center ${theme} text-2xl md:text-3xl font-bold`}
-            >
-              <ArrowLeft className="w-12 h-12 md:w-12 md:h-12" />
-              <span className="md:hidden text-xs">Back to home</span>
-            </motion.button>
-
             <h2 className={`text-2xl font-bold ${theme} uppercase`}>
               Object Inspector
             </h2>
@@ -126,18 +117,39 @@ export default function Lesson1() {
 
         {/* 🧠 RIGHT - LIVE VIEW + CODE */}
         <div className="flex-1 p-6 md:p-4 overflow-y-auto scrollbar-modern h-screen">
-          {/* TITLE */}
-          <motion.h1
-            className={`text-2xl md:text-4xl uppercase font-black ${theme}`}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Classes & Objects
-          </motion.h1>
+          <div className="flex items-center justify-between">
+            <div>
+              {/* TITLE */}
+              <motion.h1
+                className={`text-2xl md:text-4xl uppercase font-black ${theme}`}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                Classes & Objects
+              </motion.h1>
 
-          <p className="text-gray-400 text-sm md:text-lg">
-            A class defines structure. An object is a live instance in memory.
-          </p>
+              <p className="text-gray-400 text-sm md:text-lg">
+                A class defines structure. An object is a live instance in
+                memory.
+              </p>
+            </div>
+
+            {/* NEXT / QUIZ BUTTON */}
+            <div className="flex justify-end">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => {
+                  console.log("Go to quiz or next lesson");
+                  navigate("/oop/quiz");
+                }}
+                className={`flex items-center gap-2 px-5 py-2 rounded-lg border ${theme} font-semibold text-sm shadow-md`}
+              >
+                <span>Challenge</span>
+                <ArrowRight className="w-6 h-6 md:w-6 md:h-6" />
+              </motion.button>
+            </div>
+          </div>
 
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-2">
             <ActivePokemonCard pokemon={selected} theme={theme} />
@@ -163,25 +175,9 @@ export default function Lesson1() {
               You are viewing runtime object state + source representation.
             </p>
           </div>
-
-          {/* NEXT / QUIZ BUTTON */}
-          <div className="mt-4 flex justify-end">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => {
-                console.log("Go to quiz or next lesson");
-                navigate('/oop/quiz')
-              }}
-              className={`flex items-center px-5 py-2 rounded-lg ${theme} font-semibold text-sm shadow-md`}
-            >
-              <span>Take Quiz</span>
-              <ArrowRight className="w-6 h-6 md:w-6 md:h-6" />
-
-            </motion.button>
-          </div>
         </div>
       </div>
+      <CodeVisionFooter />
     </div>
   );
 }
