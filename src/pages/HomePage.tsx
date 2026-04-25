@@ -107,7 +107,7 @@ export default function HomePage() {
   const theme = useMemo(() => getTheme(pokemon?.type), [pokemon]);
 
   return (
-    <div className="h-screen overflow-y-auto scrollbar-modern">
+    <div className="h-screen overflow-y-auto scrollbar-modern bg-[#0B0F1A]">
       <CodeVisionHeader theme={theme} />
       <div className="min-h-screen bg-[#0B0F1A] text-white relative overflow-hidden flex flex-col md:flex-row items-center justify-center px-6 md:px-16 gap-12">
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
