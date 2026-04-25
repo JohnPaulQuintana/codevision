@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Lock, Zap, Star, ArrowLeft } from "lucide-react";
+import { Lock, Zap, Star } from "lucide-react";
 import { useEffect, useState, useMemo } from "react";
 import { getPokemon } from "../lib/pokeapi";
 import CodeVisionHeader from "../components/CodeVisionHeader";
@@ -34,6 +34,7 @@ export default function LearningHub() {
   const [loading, setLoading] = useState(false);
   const [roadmap, setRoadMap] = useState<RoadmapSection[]>([]);
 
+  console.log(loading)
   // const roadmap = [
   //   {
   //     level: "Beginner",

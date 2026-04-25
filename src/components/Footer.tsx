@@ -1,11 +1,11 @@
-type Props = {
-  theme?: {
-    text?: string;
-    border?: string;
-  };
-};
+// type Props = {
+//   theme?: {
+//     text?: string;
+//     border?: string;
+//   };
+// };
 
-export default function CodeVisionFooter({ theme }: Props) {
+export default function CodeVisionFooter() {
 
   return (
     <div className="w-full border-t border-gray-800 mt-6 py-4 flex flex-col items-center text-[10px] text-gray-500">

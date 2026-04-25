@@ -7,7 +7,7 @@ import {
   Bell,
   Zap,
   Swords,
-  Flame,
+  // Flame,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import CodeVisionHeader from "../components/CodeVisionHeader";
@@ -20,29 +20,29 @@ const getAvatar = (name: string) =>
   `https://api.dicebear.com/7.x/adventurer/svg?seed=${name}`;
 
 /* 🧠 RANK */
-function getRank(xp: number) {
-  if (xp >= 3000) return "Elite";
-  if (xp >= 2000) return "Advanced";
-  return "Beginner";
-}
+// function getRank(xp: number) {
+//   if (xp >= 3000) return "Elite";
+//   if (xp >= 2000) return "Advanced";
+//   return "Beginner";
+// }
 
-/* 🧠 STAGE */
-function getStageStyle(stage: string) {
-  switch (stage) {
-    case "Inheritance":
-      return "text-purple-300 bg-purple-500/10 border-purple-400/30";
-    case "Polymorphism":
-      return "text-pink-300 bg-pink-500/10 border-pink-400/30";
-    case "Encapsulation":
-      return "text-green-300 bg-green-500/10 border-green-400/30";
-    case "Objects & Classes":
-      return "text-blue-300 bg-blue-500/10 border-blue-400/30";
-    case "Constructor":
-      return "text-cyan-300 bg-cyan-500/10 border-cyan-400/30";
-    default:
-      return "text-gray-300 bg-gray-500/10 border-gray-400/30";
-  }
-}
+// /* 🧠 STAGE */
+// function getStageStyle(stage: string) {
+//   switch (stage) {
+//     case "Inheritance":
+//       return "text-purple-300 bg-purple-500/10 border-purple-400/30";
+//     case "Polymorphism":
+//       return "text-pink-300 bg-pink-500/10 border-pink-400/30";
+//     case "Encapsulation":
+//       return "text-green-300 bg-green-500/10 border-green-400/30";
+//     case "Objects & Classes":
+//       return "text-blue-300 bg-blue-500/10 border-blue-400/30";
+//     case "Constructor":
+//       return "text-cyan-300 bg-cyan-500/10 border-cyan-400/30";
+//     default:
+//       return "text-gray-300 bg-gray-500/10 border-gray-400/30";
+//   }
+// }
 
 /* 🧠 RANK STYLE */
 function getRankStyle(rank: string) {
@@ -72,13 +72,13 @@ function getRankStyle(rank: string) {
 }
 
 /* DATA */
-const PLAYERS = [
-  { name: "Ash", xp: 3200, position: 1, stage: "Inheritance" },
-  { name: "Misty", xp: 2800, position: 2, stage: "Polymorphism" },
-  { name: "Brock", xp: 2500, position: 3, stage: "Encapsulation" },
-  { name: "Gary", xp: 2100, position: 4, stage: "Objects & Classes" },
-  { name: "You", xp: 1800, position: 5, stage: "Constructor" },
-].map((p) => ({ ...p, rank: getRank(p.xp) }));
+// const PLAYERS = [
+//   { name: "Ash", xp: 3200, position: 1, stage: "Inheritance" },
+//   { name: "Misty", xp: 2800, position: 2, stage: "Polymorphism" },
+//   { name: "Brock", xp: 2500, position: 3, stage: "Encapsulation" },
+//   { name: "Gary", xp: 2100, position: 4, stage: "Objects & Classes" },
+//   { name: "You", xp: 1800, position: 5, stage: "Constructor" },
+// ].map((p) => ({ ...p, rank: getRank(p.xp) }));
 
 /* ANNOUNCEMENTS */
 const ANNOUNCEMENTS = [
@@ -91,6 +91,7 @@ export default function RankingPage() {
   const [players, setPlayers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  console.log(loading)
   useEffect(() => {
     const fetchRanking = async () => {
       try {
